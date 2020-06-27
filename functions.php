@@ -50,8 +50,8 @@ if ( ! function_exists( 'iso_setup' ) ) :
 		// This theme uses wp_nav_menu() in one location.
 		register_nav_menus(
 			array(
-				'menu-1' => esc_html__( 'Header', 'iso' ),
-				'menu-2' => esc_html__( 'Footer', 'iso' ),
+				'menu-header' => esc_html__( 'Header', 'iso' ),
+				'menu-footer' => esc_html__( 'Footer', 'iso' ),
 			)
 		);
 
@@ -139,8 +139,8 @@ function iso_widgets_init() {
 	// );
 	register_sidebar(
 		array(
-			'name'          => esc_html__( 'Site Header', 'iso' ),
-			'id'            => 'sidebar-1',
+			'name'          => esc_html__( 'Header top sidebar', 'iso' ),
+			'id'            => 'header-top-1',
 			'description'   => esc_html__( 'Add widgets here.', 'iso' ),
 			'before_widget' => '<section id="%1$s" class="widget %2$s">',
 			'after_widget'  => '</section>',
