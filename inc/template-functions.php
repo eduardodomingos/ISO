@@ -40,7 +40,6 @@ add_action( 'wp_head', 'iso_pingback_header' );
 /**
  * Remove content editor support for specific pages
  */
-add_action( 'admin_init', 'hide_editor' );
 function hide_editor() {
 	$post_id = $_GET['post'] ? $_GET['post'] : $_POST['post_ID'] ;
 	if( !isset( $post_id ) ) return;
@@ -49,6 +48,8 @@ function hide_editor() {
 		remove_post_type_support('page', 'editor');
 	}
 }
+// add the action 
+add_action( 'admin_init', 'hide_editor' );
 
 /**
  * Define the rewrite_rules_array callback
