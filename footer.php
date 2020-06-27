@@ -28,6 +28,18 @@
 		</div>
 		<small class="wrap">&copy; <?php echo date('Y'); ?> Eduardo Domingos. All Rights Reserved.</small>
 	</footer>
+	<aside id="offcanvas">
+		<nav class="site-nav">
+			<?php
+			wp_nav_menu(
+				array(
+					'theme_location' => 'menu-header',
+					'container'      => false,
+				)
+			);
+			?>
+		</nav>
+	</aside>
 </div>
 
 <?php wp_footer(); ?>

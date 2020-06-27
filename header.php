@@ -50,7 +50,7 @@
 							);
 							?>
 						</nav>
-						<button class="offcanvas-toggle" aria-controls="primary-menu" aria-expanded="false">
+						<button class="offcanvas-toggle" aria-controls="offcanvas" aria-expanded="false">
 							<i></i>
 							<i></i>
 							<i></i>
