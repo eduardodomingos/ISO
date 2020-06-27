@@ -82,4 +82,17 @@ function filter_post_type_link( $post_link, $post, $leavename, $sample ) {
 }; 
          
 // add the filter 
-add_filter( 'post_type_link', 'filter_post_type_link', 10, 4 ); 
+add_filter( 'post_type_link', 'filter_post_type_link', 10, 4 );
+
+/**
+ * Get template part with passed arguments.
+ * @return file
+ */
+function iso_get_template_part( $slug, $name = null, $data = array() ) {
+    extract( $data );
+    if ( $name )
+        $file = "{$slug}-{$name}.php";
+    else
+        $file = "{$slug}.php";
+    include locate_template( $file );
+}

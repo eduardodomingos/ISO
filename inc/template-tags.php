@@ -163,3 +163,96 @@ if ( ! function_exists( 'wp_body_open' ) ) :
 		do_action( 'wp_body_open' );
 	}
 endif;
+
+if ( ! function_exists( 'iso_insert_modules' ) ) :
+	/**
+	 * Prints ACF Modules Fied Group.
+	 */
+	function iso_insert_modules() { ?>
+		<div class="modules">
+		<?php
+			if( have_rows('modules') ):
+				while ( have_rows('modules') ) : the_row();
+					if( get_row_layout() == 'featured_works' ): ?>
+						<section class="section">
+							<div class="wrap">
+								<header class="section__header">
+									<h2>Featured Work</h2>
+									<p><a href="<?php echo get_post_type_archive_link('portfolio'); ?>">view all work</a></p>
+								</header>
+								<div class="section__content">
+									<?php 
+									$featured_work = get_sub_field('portfolio');
+									if( $featured_work ): ?>
+										<?php global $post; ?>
+										<ul class="list list--portfolio">
+										<?php foreach( $featured_work as $post ):
+											// Setup this post for WP functions (variable must be named $post).
+											setup_postdata($post); ?>
+											<li>
+												<?php iso_get_template_part('template-parts/content', 'teaser', array('template_type' => '')); ?>
+											</li>
+										<?php endforeach; ?>
+										</ul>
+										<?php
+										// Reset the global post object so that the rest of the page works correctly.
+										wp_reset_postdata(); ?>
+									<?php endif; ?>
+								</div>
+							</div>
+						</section>
+					<?php elseif( get_row_layout() == 'featured_posts' ): ?>
+						<section class="section section--bg">
+							<div class="wrap">
+								<header class="section__header">
+									<h2>Featured Blog Posts</h2>
+									<p><a href="<?php echo get_permalink( get_option( 'page_for_posts' ) ); ?>">view all blog posts</a></p>
+								</header>
+								<div class="section__content">
+									<?php 
+									$featured_work = get_sub_field('posts');
+									if( $featured_work ): ?>
+										<?php global $post; ?>
+										<ul class="list list--default">
+										<?php foreach( $featured_work as $post ):
+											// Setup this post for WP functions (variable must be named $post).
+											setup_postdata($post); ?>
+											<li>
+												<?php iso_get_template_part('template-parts/content', 'teaser'); ?>
+											</li>
+										<?php endforeach; ?>
+										</ul>
+										<?php
+										// Reset the global post object so that the rest of the page works correctly.
+										wp_reset_postdata(); ?>
+									<?php endif; ?>
+								</div>
+							</div>
+						</section>
+					<?php endif; 
+				endwhile;
+			else :
+				echo "<div class='wrap'>No Modules Defined!</div>";
+			endif;
+		?>
+		</div>
+	<?php }
+endif;
+
+if ( ! function_exists( 'iso_get_post_categories' ) ) :
+	/**
+	 * Return HTML with formatted post categories list.
+	 */
+	function iso_get_post_categories() {
+		if ( 'post' === get_post_type() ) {
+			/* translators: used between list items, there is a space after the comma */
+			$categories_list = get_the_category_list( esc_html__( ', ', 'iso' ) );
+			if ( $categories_list ) {
+				return sprintf( '<span class="cat-links">' . esc_html__( '%1$sPosted in%2$s %3$s', 'iso' ) . '</span>', '<span class="screen-reader-text">', '</span>', $categories_list ); // WPCS: XSS OK.
+			}
+		}
+	}
+endif;
+
+
+
