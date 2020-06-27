@@ -67,3 +67,19 @@ function filter_rewrite_rules_array( $rules ) {
          
 // add the filter 
 add_filter( 'rewrite_rules_array', 'filter_rewrite_rules_array', 10, 1 ); 
+
+/**
+ * define the post_type_link callback 
+ */
+function filter_post_type_link( $post_link, $post, $leavename, $sample ) { 
+	// make filter magic happen here... 
+	if ( $post->post_type == 'portfolio' ) {
+		if ( $cats = get_the_terms( $post->ID, 'location' ) ) {
+		  $post_link = str_replace( '%location%', current( $cats )->slug, $post_link );
+		}
+	  }
+    return $post_link; 
+}; 
+         
+// add the filter 
+add_filter( 'post_type_link', 'filter_post_type_link', 10, 4 ); 
