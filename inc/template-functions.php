@@ -49,3 +49,20 @@ function hide_editor() {
 		remove_post_type_support('page', 'editor');
 	}
 }
+
+/**
+ * Define the rewrite_rules_array callback
+ */
+function filter_rewrite_rules_array( $rules ) { 
+	// make filter magic happen here... 
+	$newRules  = array();
+	// portfolio/portugal/samouqueira -> index.php?portfolio=samouqueira
+	$newRules['portfolio/(.+)/(.+)/?$'] = 'index.php?portfolio=$matches[2]';
+	// portfolio/portugal -> index.php?location=portugal
+	$newRules['portfolio/(.+)/?$'] = 'index.php?location=$matches[1]';
+
+    return array_merge( $newRules, $rules );
+}; 
+         
+// add the filter 
+add_filter( 'rewrite_rules_array', 'filter_rewrite_rules_array', 10, 1 ); 
