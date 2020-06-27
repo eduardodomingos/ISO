@@ -35,3 +35,17 @@ function iso_pingback_header() {
 	}
 }
 add_action( 'wp_head', 'iso_pingback_header' );
+
+
+/**
+ * Remove content editor support for specific pages
+ */
+add_action( 'admin_init', 'hide_editor' );
+function hide_editor() {
+	$post_id = $_GET['post'] ? $_GET['post'] : $_POST['post_ID'] ;
+	if( !isset( $post_id ) ) return;
+	$home = get_the_title($post_id);
+	if($home == 'Home') { 
+		remove_post_type_support('page', 'editor');
+	}
+}
