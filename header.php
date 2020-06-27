@@ -25,35 +25,39 @@
 <div id="page" class="site">
 	<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'iso' ); ?></a>
 
-	<header id="masthead" class="site-header">
-		<div class="site-branding">
-			<?php
-			the_custom_logo();
-			if ( is_front_page() && is_home() ) :
-				?>
-				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-				<?php
-			else :
-				?>
-				<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
-				<?php
-			endif;
-			$iso_description = get_bloginfo( 'description', 'display' );
-			if ( $iso_description || is_customize_preview() ) :
-				?>
-				<p class="site-description"><?php echo $iso_description; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
-			<?php endif; ?>
-		</div><!-- .site-branding -->
-
-		<nav id="site-navigation" class="main-navigation">
-			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'iso' ); ?></button>
-			<?php
-			wp_nav_menu(
-				array(
-					'theme_location' => 'menu-1',
-					'menu_id'        => 'primary-menu',
-				)
-			);
-			?>
-		</nav><!-- #site-navigation -->
-	</header><!-- #masthead -->
+	<header 
+	class="site-header <?php if (has_post_thumbnail( $post->ID ) ): ?>site-header--bg-img<?php endif;?>"
+	<?php if (has_post_thumbnail( $post->ID ) ): ?>
+		style="background-image: url('<?php echo wp_get_attachment_url( get_post_thumbnail_id( $post->ID ) ); ?>');"
+	<?php endif;?>
+	>
+		<div>
+			<?php dynamic_sidebar( 'header-top-1' ); ?>
+			<div class="bar">
+				<div class="wrap">
+					<div class="branding">
+						<h1><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">Eduardo Domingos</a></h1>
+						<p>Landscape Photography</p>
+					</div>
+					<div>
+						<nav class="site-nav">
+							<?php
+							wp_nav_menu(
+								array(
+									'theme_location' => 'menu-header',
+									'container'      => false,
+								)
+							);
+							?>
+						</nav>
+						<button class="offcanvas-toggle" aria-controls="primary-menu" aria-expanded="false">
+							<i></i>
+							<i></i>
+							<i></i>
+							<span class="screen-reader-text">Open Menu</span>
+                        </button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>

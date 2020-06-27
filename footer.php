@@ -11,22 +11,24 @@
 
 ?>
 
-	<footer id="colophon" class="site-footer">
-		<div class="site-info">
-			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'iso' ) ); ?>">
+	<footer class="site-footer">
+		<div class="site-footer__top">
+			<div class="wrap">
+			
 				<?php
-				/* translators: %s: CMS name, i.e. WordPress. */
-				printf( esc_html__( 'Proudly powered by %s', 'iso' ), 'WordPress' );
+				wp_nav_menu(
+					array(
+						'theme_location' => 'menu-footer',
+						'container'      => false,
+					)
+				);
 				?>
-			</a>
-			<span class="sep"> | </span>
-				<?php
-				/* translators: 1: Theme name, 2: Theme author. */
-				printf( esc_html__( 'Theme: %1$s by %2$s.', 'iso' ), 'iso', '<a href="http://www.eduardodomingos.com">Eduardo Domingos</a>' );
-				?>
-		</div><!-- .site-info -->
-	</footer><!-- #colophon -->
-</div><!-- #page -->
+
+			</div>
+		</div>
+		<small class="wrap">&copy; <?php echo date('Y'); ?> Eduardo Domingos. All Rights Reserved.</small>
+	</footer>
+</div>
 
 <?php wp_footer(); ?>
 
