@@ -84,6 +84,53 @@ function filter_post_type_link( $post_link, $post, $leavename, $sample ) {
 // add the filter 
 add_filter( 'post_type_link', 'filter_post_type_link', 10, 4 );
 
+/*
+ * Prefix tags with an # symbol
+*/
+add_filter( 'term_links-post_tag', function ( $links )
+{
+
+    // Return if $links are empty
+    if ( empty( $links ) )
+        return $links;
+
+    // Reset $links to an empty array
+    unset ( $links );
+    $links = [];
+
+    // Get the current post ID
+    $id = get_the_ID();
+    // Get all the tags attached to the post
+    $taxonomy = 'post_tag';
+	$terms = get_the_terms( $id, $taxonomy );
+	
+
+    // Make double sure we have tags
+    if ( !$terms )
+        return $links; 
+
+    // Loop through the tags and build the links
+    foreach ( $terms as $term ) {
+        $link = get_term_link( $term, $taxonomy );
+
+        // Here we add our hastag, so we get #Tag Name with link
+        $links[] = '<a href="' . esc_url( $link ) . '" rel="tag">#' . $term->name . '</a>';
+    }
+
+    return $links;
+});
+
+/*
+ * Add support for custom post type "portfolio" tags
+ *  (https://wordpress.stackexchange.com/questions/108067/custom-post-type-taxonomy-tag-archive-no-post-found)
+*/
+function iso_cpt_tags( $query ) {
+    if ( $query->is_tag() && $query->is_main_query() ) {
+        $query->set( 'post_type', array( 'post', 'portfolio' ) );
+    }
+}
+add_action( 'pre_get_posts', 'iso_cpt_tags' );
+
 /**
  * Get template part with passed arguments.
  * @return file

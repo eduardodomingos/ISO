@@ -254,5 +254,49 @@ if ( ! function_exists( 'iso_get_post_categories' ) ) :
 	}
 endif;
 
+if ( ! function_exists( 'iso_entry_tags' ) ) :
+	/**
+	 * Prints HTML with meta information for the tags.
+	 */
+	function iso_entry_tags() {
+		/* translators: used between list items, there is a space after the comma */
+		$tags_list = get_the_tag_list('',' ');
+		if ( $tags_list ) {
+			?>
+			<p class="tags">Tags: <?php echo $tags_list?></p>
+			<?php
+		}
+	}
+endif;
+
+if ( ! function_exists( 'iso_entry_share' ) ) :
+	/**
+	 * Displays the share buttons.
+	 */
+	function iso_entry_share() {
+		$entry_url = urlencode(get_the_permalink());
+		$entry_title = urlencode(html_entity_decode(get_the_title(), ENT_COMPAT, 'UTF-8'));
+		?>
+		<div class="share">
+			<span class="label"><?php echo iso_get_svg( array( 'icon' => 'sharing' )); ?> Share</span>
+			<ul class="socials">
+				<li>
+					<a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $entry_url; ?>" title="Share on Facebook">
+						<?php echo iso_get_svg( array( 'icon' => 'facebook' )); ?>
+						<span class="screen-reader-text">Share on Facebook</span>
+					</a>
+				</li>
+				<li>
+					<a href="https://twitter.com/intent/tweet?text=<?php echo $entry_title; ?>&amp;url=<?php echo $entry_url; ?>&amp;via=eddomingos" title="Share on Twitter">
+						<?php echo iso_get_svg( array( 'icon' => 'twitter' )); ?>
+						<span class="screen-reader-text">Share on Twitter</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+	<?php
+	}
+endif;
+
 
 
