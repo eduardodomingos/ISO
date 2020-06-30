@@ -22,6 +22,15 @@
             </a>
         </article>
     <?php break;?>
+    <?php 
+    case 'location': ?>
+        <article class="teaser teaser--location">
+            <a href="<?php echo esc_url(get_term_link($term)); ?>">
+                <!-- thumb aqui! -->
+                <h2><?php echo $term ->name; ?></h2>
+            </a>
+        </article>
+    <?php break;?>
 
     <?php default: ?>
         <article class="teaser">
