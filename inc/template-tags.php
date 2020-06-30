@@ -190,7 +190,7 @@ if ( ! function_exists( 'iso_insert_modules' ) ) :
 											// Setup this post for WP functions (variable must be named $post).
 											setup_postdata($post); ?>
 											<li>
-												<?php iso_get_template_part('template-parts/content', 'teaser', array('template_type' => '')); ?>
+												<?php iso_get_template_part('template-parts/content', 'teaser', array('template_type' => 'portfolio')); ?>
 											</li>
 										<?php endforeach; ?>
 										</ul>
