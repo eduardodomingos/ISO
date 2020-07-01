@@ -131,6 +131,21 @@ function iso_cpt_tags( $query ) {
 }
 add_action( 'pre_get_posts', 'iso_cpt_tags' );
 
+
+/*
+ * Remove prefix from archive titles
+ *  (https://wordpress.stackexchange.com/questions/179585/remove-category-tag-author-from-the-archive-title)
+*/
+add_filter( 'get_the_archive_title', function ($title) {    
+    if ( is_tax('location') ) {
+        $title = sprintf( __( '%1$s' ), single_term_title( '', false ) );
+    } 
+    elseif ( is_post_type_archive('portfolio') ) {
+        $title = post_type_archive_title( '', false );
+    } 
+    return $title;
+});
+
 /**
  * Get template part with passed arguments.
  * @return file
