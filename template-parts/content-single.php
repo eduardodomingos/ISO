@@ -9,14 +9,17 @@
 
 ?>
 
-<article class="post post--portfolio">
+<article class="post post--blog">
 	<header class="post__header">
-		<!--div class="post-thumbnail post-thumbnail--landscape">
-			<?php // iso_post_thumbnail(); ?>
-			<img src="img/coimbra.jpg" alt="">
-		</div-->
+		<div class="wrap wrap--mid">
+			<!--div class="post-thumbnail">
+				<?php // iso_post_thumbnail(); ?>
+				<img src="img/mushrooms.jpg" alt="">
+			</div-->
+		</div>
 		<div class="wrap wrap--content">
 			<?php the_title( '<h1>', '</h1>' ); ?>
+			<p class="meta"><?php iso_posted_on(); ?> <?php iso_posted_in(); ?></p>
 		</div>
 	</header>
 	<div class="post__content wrap wrap--content">
@@ -29,40 +32,31 @@
 </article>
 
 <?php
-$terms = get_the_terms( $post->ID, 'location' );
-$location = $terms[0];
 $related = new WP_Query(
 	array(
-		'post_type' => 'portfolio',
-		'orderby'   => 'rand',
-		'order' => 'ASC',
-		'posts_per_page' => '3',
+        'category__in'   => wp_get_post_categories( $post->ID ),
+        'posts_per_page' => 3,
 		'post__not_in'   => array( $post->ID ),
-		'tax_query' => array(
-			array(
-				'taxonomy' => 'location',
-				'field' => 'slug',
-				'terms' => $location->slug
-			)
-		)
-	)
+		'orderby'   => 'rand',
+		'order' => 'ASC'
+    )
 );
 
 if ( $related->have_posts() ): ?>
 	<section class="section section--bg">
 		<div class="wrap">
 			<header class="section__header">
-				<h2>Explore More From <?php echo $location->name; ?></h2>
-				<p><a href="<?php echo get_post_type_archive_link('portfolio'); ?>">view all work</a></p>
+				<h2>You May Also Like</h2>
+				<p><a href="<?php echo get_permalink( get_option( 'page_for_posts' ) ); ?>">view all blog posts</a></p>
 			</header>
 			<div class="section__content">
-				<ul class="list list--portfolio">
+				<ul class="list list--default">
 					<?php
 					/* Start the Loop */
 					while ( $related->have_posts() ) :
 						$related->the_post();
 						echo '<li>';				
-						iso_get_template_part('template-parts/content', 'teaser', array('template_type' => 'portfolio'));
+						iso_get_template_part('template-parts/content', 'teaser');
 						echo '</li>';
 					endwhile;
 					?>
@@ -72,3 +66,6 @@ if ( $related->have_posts() ): ?>
 	</section>
 	<?php wp_reset_postdata(); ?>
 <?php endif;?>
+
+
+
