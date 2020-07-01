@@ -7,35 +7,6 @@
  * @package ISO
  */
 
-if ( ! function_exists( 'iso_posted_on' ) ) :
-	/**
-	 * Prints HTML with meta information for the current post-date/time.
-	 */
-	function iso_posted_on() {
-		$time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
-		if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) ) {
-			$time_string = '<time class="entry-date published" datetime="%1$s">%2$s</time><time class="updated" datetime="%3$s">%4$s</time>';
-		}
-
-		$time_string = sprintf(
-			$time_string,
-			esc_attr( get_the_date( DATE_W3C ) ),
-			esc_html( get_the_date() ),
-			esc_attr( get_the_modified_date( DATE_W3C ) ),
-			esc_html( get_the_modified_date() )
-		);
-
-		$posted_on = sprintf(
-			/* translators: %s: post date. */
-			esc_html_x( 'Posted on %s', 'post date', 'iso' ),
-			'<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . $time_string . '</a>'
-		);
-
-		echo '<span class="posted-on">' . $posted_on . '</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-
-	}
-endif;
-
 if ( ! function_exists( 'iso_posted_by' ) ) :
 	/**
 	 * Prints HTML with meta information for the current author.
@@ -295,6 +266,48 @@ if ( ! function_exists( 'iso_entry_share' ) ) :
 			</ul>
 		</div>
 	<?php
+	}
+endif;
+
+
+if ( ! function_exists( 'iso_posted_on' ) ) :
+	/**
+	 * Prints HTML with meta information for the current post-date/time.
+	 */
+	function iso_posted_on() {
+		$time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
+		if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) ) {
+			$time_string = '<time class="entry-date published" datetime="%1$s">%2$s</time><time class="updated" datetime="%3$s">%4$s</time>';
+		}
+
+		$time_string = sprintf( $time_string,
+			esc_attr( get_the_date( DATE_W3C ) ),
+			human_time_diff( get_the_time( 'U' ), current_time( 'timestamp' ) ) . ' ago',
+			esc_attr( get_the_modified_date( DATE_W3C ) ),
+			human_time_diff( get_the_modified_time( 'U' ), current_time( 'timestamp' ) ) . ' ago'
+		);
+
+		echo ' <span class="posted-on meta">'. $time_string . '</span>'; // WPCS: XSS OK.
+
+	}
+endif;
+
+if ( ! function_exists( 'iso_posted_in' ) ) :
+	/**
+	 * Displays an optional post thumbnail.
+	 *
+	 * Wraps the post thumbnail in an anchor element on index views, or a div
+	 * element when on single views.
+	 */
+	function iso_posted_in() {
+		/* translators: used between list items, there is a space after the comma */
+		$categories_list = get_the_category_list( esc_html__( ', ', 'iso' ) );
+		if ( $categories_list ) {
+			/* translators: 1: list of categories. */
+			?>
+			<span class="cat-links">under <?php echo $categories_list; ?></span>
+			<?php
+		}
 	}
 endif;
 
