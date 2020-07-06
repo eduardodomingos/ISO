@@ -219,7 +219,7 @@ if ( ! function_exists( 'iso_get_post_categories' ) ) :
 			/* translators: used between list items, there is a space after the comma */
 			$categories_list = get_the_category_list( esc_html__( ', ', 'iso' ) );
 			if ( $categories_list ) {
-				return sprintf( '<span class="cat-links">' . esc_html__( '%1$sPosted in%2$s %3$s', 'iso' ) . '</span>', '<span class="screen-reader-text">', '</span>', $categories_list ); // WPCS: XSS OK.
+				return sprintf( '<span class="topics">' . esc_html__( '%1$sPosted in%2$s %3$s', 'iso' ) . '</span>', '<span class="screen-reader-text">', '</span>', $categories_list ); // WPCS: XSS OK.
 			}
 		}
 	}
@@ -310,6 +310,3 @@ if ( ! function_exists( 'iso_posted_in' ) ) :
 		}
 	}
 endif;
-
-
-
