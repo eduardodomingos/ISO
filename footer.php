@@ -20,6 +20,7 @@
 					array(
 						'theme_location' => 'menu-footer',
 						'container'      => false,
+						'menu_class'     => 'socials',
 					)
 				);
 				?>
@@ -28,7 +29,7 @@
 		</div>
 		<small class="wrap">&copy; <?php echo date('Y'); ?> Eduardo Domingos. All Rights Reserved.</small>
 	</footer>
-	<aside id="offcanvas">
+	<aside class="offcanvas">
 		<nav class="site-nav">
 			<?php
 			wp_nav_menu(
