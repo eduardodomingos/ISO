@@ -1,6 +1,7 @@
-require('es6-promise').polyfill();
+"use strict";
 
-var gulp          = require('gulp'),
+// Load plugins
+const gulp          = require('gulp'),
     sass          = require('gulp-sass'),
     autoprefixer  = require('gulp-autoprefixer'),
     plumber       = require('gulp-plumber'),
@@ -11,9 +12,7 @@ var gulp          = require('gulp'),
     jshint        = require('gulp-jshint'),
     uglify        = require('gulp-uglify'),
     minifycss     = require('gulp-uglifycss' ),
-    imagemin      = require('gulp-imagemin'),
-    browserSync   = require('browser-sync').create(),
-    reload        = browserSync.reload;
+    imagemin      = require('gulp-imagemin')
 
 var onError = function( err ) {
   console.log('An error occurred:', gutil.colors.magenta(err.message));
@@ -21,9 +20,10 @@ var onError = function( err ) {
   this.emit('end');
 };
 
-// Sass
-gulp.task('sass', function() {
-  return gulp.src('./sass/**/*.scss')
+// CSS task
+function css() {
+  return gulp
+  .src('./sass/**/*.scss')
   .pipe( sourcemaps.init() )
   .pipe(plumber({ errorHandler: onError }))
   .pipe(sass())
@@ -31,42 +31,11 @@ gulp.task('sass', function() {
   .pipe( minifycss({ "uglyComments": true }) )
   .pipe(sourcemaps.write('./sass/maps'))
   .pipe(gulp.dest('./'))
-});
+}
 
-// JavaScript
-gulp.task('js', function() {
-  return gulp.src([
-    './js/app.js'
-  ])
-  .pipe(sourcemaps.init())
-  .pipe(jshint())
-  .pipe(jshint.reporter('default'))
-  .pipe(concat('app.js'))
-  .pipe(rename({suffix: '.min'}))
-  .pipe(uglify())
-  .pipe(sourcemaps.write('./maps'))
-  .pipe(gulp.dest('./js'));
-});
+// Watch files
+function watchFiles() {
+  gulp.watch("./sass/**/*.scss", css);
+}
 
-// Images
-gulp.task('images', function() {
-  return gulp.src('./images/src/*')
-  .pipe(plumber({ errorHandler: onError }))
-  .pipe(imagemin({ optimizationLevel: 7, progressive: true }))
-  .pipe(gulp.dest('./images/dist'));
-});
-
-// Watch
-gulp.task('watch', function() {
-  browserSync.init({
-    files: ['./**/*.php'],
-    open: 'external',
-    proxy: 'eduardodomingoscom.local',
-    port: 8080
-  });
-  gulp.watch('./sass/**/*.scss', ['sass', reload]);
-  gulp.watch(['./js/*.js', '!./js/app.min.js'], ['js', reload]);
-  gulp.watch('images/src/*', ['images', reload]);
-});
-
-gulp.task('default', ['sass', 'js', 'images', 'watch']);
+exports.default = gulp.series(gulp.parallel(css, watchFiles));
