@@ -106,6 +106,26 @@ endif;
 add_action( 'after_setup_theme', 'iso_setup' );
 
 /**
+ * Add preconnect for Google Fonts.
+ *
+ * @since Twenty Seventeen 1.0
+ *
+ * @param array  $urls           URLs to print for resource hints.
+ * @param string $relation_type  The relation type the URLs are printed.
+ * @return array $urls           URLs to print for resource hints.
+ */
+function iso_resource_hints( $urls, $relation_type ) {
+	if ( wp_style_is( 'iso-fonts', 'queue' ) && 'preconnect' === $relation_type ) {
+		$urls[] = array(
+			'href' => 'https://fonts.gstatic.com',
+			'crossorigin',
+		);
+	}
+	return $urls;
+}
+add_filter( 'wp_resource_hints', 'iso_resource_hints', 10, 2 );
+
+/**
  * Set the content width in pixels, based on the theme's design and stylesheet.
  *
  * Priority 0 to make it available to lower priority callbacks.
@@ -155,14 +175,8 @@ add_action( 'widgets_init', 'iso_widgets_init' );
  * Enqueue scripts and styles.
  */
 function iso_scripts() {
+	wp_enqueue_style( 'iso-fonts', '//fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap' );
 	wp_enqueue_style( 'iso-style', get_stylesheet_uri(), array(), _S_VERSION );
-	wp_style_add_data( 'iso-style', 'rtl', 'replace' );
-
-	wp_enqueue_script( 'iso-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
-
-	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-		wp_enqueue_script( 'comment-reply' );
-	}
 }
 add_action( 'wp_enqueue_scripts', 'iso_scripts' );
 
