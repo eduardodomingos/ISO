@@ -158,3 +158,21 @@ function iso_get_template_part( $slug, $name = null, $data = array() ) {
         $file = "{$slug}.php";
     include locate_template( $file );
 }
+
+/**
+ * Customize ellipsis at end of excerpts.
+ */
+function iso_excerpt_more( $more ) {
+	return "…";
+}
+add_filter( 'excerpt_more', 'iso_excerpt_more' );
+
+
+
+/**
+ * Customize length of excerpts.
+ */
+function iso_custom_excerpt_length( $length ) {
+    return 25;
+}
+add_filter( 'excerpt_length', 'iso_custom_excerpt_length', 999 );
