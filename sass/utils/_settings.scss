@@ -1,0 +1,46 @@
+/*--------------------------------------------------------------
+# Settings
+--------------------------------------------------------------*/
+// Spacing
+$baseline: 6px;
+$spacing-unit-factor-tiny: 1; // 6px
+$spacing-unit-factor-small: 2; // 12px
+$spacing-unit-factor: 4; // 24px
+$spacing-unit-factor-large: 8; // 48px
+$spacing-unit-factor-huge: 16; // 96px
+$spacing-unit: $baseline * $spacing-unit-factor;
+$spacing-unit--tiny: $baseline * $spacing-unit-factor-tiny;
+$spacing-unit--small: $baseline * $spacing-unit-factor-small;
+$spacing-unit--large: $baseline * $spacing-unit-factor-large;
+$spacing-unit--huge: $baseline * $spacing-unit-factor-huge;
+
+// Colors
+$black: #000000;
+$white: #FFFFFF;
+$grey: #63666A;
+$blue: #9cbdcc;
+$blue2: #4196b9;
+$color-link: $blue2;
+$color-link--hover: darken($color-link, 5%);
+
+$facebook: #4267B2;
+$instagram: #833AB4;
+$twitter: #1DA1F2;
+$youtube: #FF0000;
+$fivehundredpx: #000000;
+
+// Typography
+$font: 'Roboto', sans-serif;
+$font-size: 16px;
+$line-height: 1.5;
+$line-height--headings: 1.3;
+$font--light: 300;
+$font--normal: 400;
+$font--bold: 700;
+
+// Sizes
+$site-header-height: $spacing-unit--large + $spacing-unit;
+$nav-toggle-span-width: $spacing-unit;
+$nav-toggle-span-height: 2px;
+$nav-toggle-span-gap: 8px;
+$cta-thin-height: $spacing-unit + $spacing-unit--small;

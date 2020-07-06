@@ -1,0 +1,38 @@
+/*--------------------------------------------------------------
+# Typography
+--------------------------------------------------------------*/
+html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    font-family: $font;
+    font-size: $font-size;
+    line-height: $line-height;
+    background-color: $white;
+    color: $grey;
+}
+
+.screen-reader-text {
+    @include screen-reader-text();
+}
+
+@include headings() {
+    color: $black;
+    font-weight: $font--bold;
+    line-height: $line-height--headings;
+    a {
+        @include attention() {
+            color: $color-link;
+        }
+    }
+}
+
+%links {
+    color: $color-link;
+    @include attention() {
+        color: $color-link--hover;
+        text-decoration: underline;
+    }
+}

@@ -1,0 +1,36 @@
+/*--------------------------------------------------------------
+# Section
+--------------------------------------------------------------*/
+%section {
+    padding: $spacing-unit + $spacing-unit--large 0;
+    &:first-child {
+        padding-top: $spacing-unit--large;
+    }
+}
+
+.section {
+    @extend %section;
+    .section__header {
+        text-align: center;
+        margin-bottom: $spacing-unit--large;
+        h2 {
+            font-size: 35px;
+            &.big{
+                font-size: 40px;
+            }
+        }
+        p {
+            max-width: 600px;
+            margin: $spacing-unit--small auto 0;
+            a {
+                color: $color-link;
+                @include attention() {
+                    color: $color-link--hover;
+                }
+            }
+        }
+    }
+    &--bg {
+        background-color: lighten($black, 95%);
+    }
+}

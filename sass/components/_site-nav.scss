@@ -1,0 +1,46 @@
+/*--------------------------------------------------------------
+# Site Nav
+--------------------------------------------------------------*/
+.site-nav {    
+    li.current-menu-item {
+        color: $black;
+        font-weight: $font--bold;
+        a {
+            opacity: 1;
+        }
+    }
+
+    a {
+        opacity: .8;
+        @include attention() {
+            opacity: 1;
+        }
+    }
+
+    .site-header & {
+        display: none;
+        @include mq($from: desktop) {
+            display: block;
+            font-size: 15px;
+            > ul {
+                display: flex;
+            }
+            a {
+                display: block;
+                padding: $spacing-unit--small;
+            }
+        }
+    }
+
+    .offcanvas & {
+        border-top: 1px solid lighten($black, 90%);
+        border-bottom: 1px solid lighten($black, 90%);
+        li:not(:last-child) {
+            border-bottom: 1px solid lighten($black, 90%);
+        }
+        a {
+            display: block;
+            padding: $spacing-unit--small $spacing-unit--tiny;
+        }
+    }
+}

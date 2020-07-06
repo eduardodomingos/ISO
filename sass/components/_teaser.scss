@@ -1,0 +1,99 @@
+/*--------------------------------------------------------------
+# Teaser
+--------------------------------------------------------------*/
+.teaser {
+    img {
+        margin-bottom: $spacing-unit--small + $spacing-unit--tiny;
+    }
+
+    .topics {
+        a {
+            font-weight: $font--bold;
+            text-transform: uppercase;
+            font-size: 13px;
+            @include attention() {
+                color: $color-link;
+            }
+        }
+    }
+
+    h2 {
+        font-size: 24px;
+        margin-bottom: $spacing-unit--small;
+    }
+
+    p {
+        font-size: 95%;
+    }
+
+    &--portfolio {
+        position: relative;
+        background-color: lighten($black, 10%);
+        &:not(:last-child) {
+            margin: 0 0 $spacing-unit--large;
+            @include mq($from: tablet) {
+                margin: 0 $spacing-unit 0 0;
+            }
+        }
+        &--2x3 {
+            flex: .666667 0%;
+        }
+        &--3x2 {
+            flex: 1.5 0%;
+        }
+
+        img {
+            margin-bottom: 0;
+            transition: all .2s;
+        }
+
+        h2 {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            text-align: center;
+            width: 100%;
+            opacity: 0;
+            color: $white;
+            transition: all .2s;
+            font-size: 18px;
+            letter-spacing: .2px;
+        }
+
+        @include attention() {
+            h2 {
+                opacity: 1;
+            }
+            img {
+                opacity: .6;
+            }
+        }
+    }
+
+    &--location {
+        position: relative;
+        background-color: lighten($black, 10%);
+        img {
+            margin-bottom: 0;
+            transition: all .2s;
+            opacity: .6;
+        }
+        h2 {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            text-align: center;
+            width: 100%;
+            color: $white;
+            transition: all .2s;
+            letter-spacing: .2px;
+        }
+        @include attention() {
+            img {
+                opacity: .8;
+            }
+        }
+    }
+}

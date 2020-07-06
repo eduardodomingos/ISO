@@ -1,0 +1,84 @@
+/*--------------------------------------------------------------
+# Header
+--------------------------------------------------------------*/
+.site-header {
+    padding-top: $site-header-height + $cta-thin-height;
+    > div {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 9999;
+        box-shadow: 0 1px 20px rgba($black, .5);
+        transition: all .2s;
+        .header-collapsed & {
+            top: -$cta-thin-height;
+        }
+    }
+    .bar {
+        height: $site-header-height;
+        background-color: rgba($white, .95);
+        >.wrap {
+            height: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .branding {
+            h1 {
+                font-size: 17px;
+                text-transform: uppercase;
+            }
+            p {
+                font-size: 13px;
+                text-transform: uppercase;
+                font-weight: $font--light;
+            }
+        }
+    }
+
+    &--bg-img {
+        height: 75vh;
+        background-size: cover;
+        background-position: center;
+        padding-top: 0;
+    }
+
+    .offcanvas-toggle {
+        position: relative;
+        @include square($spacing-unit--large);
+        @include mq($from: desktop) {
+            display: none;
+        }
+        i {
+            position: absolute;
+            @include size($nav-toggle-span-width, $nav-toggle-span-height);
+            left: calc(50% - #{($nav-toggle-span-width / 2)} );
+            top: calc( 50% - #{($nav-toggle-span-height / 2)} );
+            transition: all .2s;
+            background-color: $grey;
+            
+            &:nth-of-type(1) {
+                margin-top: -$nav-toggle-span-gap;
+            }
+            &:nth-of-type(3) {
+                margin-top: $nav-toggle-span-gap;
+            }
+        }
+        .offcanvas-open & {
+            i {
+                &:nth-of-type(1) {
+                    margin-top: 0;
+                    transform: rotate(45deg);
+                }
+                &:nth-of-type(2) {
+                    opacity: 0;
+                }
+                &:nth-of-type(3) {
+                    margin-top: 0;
+                    transform: rotate(-45deg);
+                }
+            }
+        }
+    }
+}

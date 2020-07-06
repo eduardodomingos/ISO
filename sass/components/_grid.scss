@@ -1,0 +1,18 @@
+/*--------------------------------------------------------------
+# Grid
+--------------------------------------------------------------*/
+.wrap {
+	position: relative;
+	max-width: 1080px;
+	padding: 0 $spacing-unit--small;
+	margin: 0 auto;
+	width: 100%;
+
+	&--content {
+		max-width: 688px;
+	}
+
+	&--mid {
+		max-width: 880px;
+	}
+}

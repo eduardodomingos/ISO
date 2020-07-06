@@ -1,0 +1,24 @@
+/*--------------------------------------------------------------
+# Page
+--------------------------------------------------------------*/
+html,
+body {
+    @include square(100%);
+}
+
+.site {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.site-main {
+    flex-grow: 1;
+}
+
+.site-header,
+.site-main,
+.site-footer {
+    flex-shrink: 0;
+}

@@ -1,0 +1,24 @@
+/*--------------------------------------------------------------
+# List
+--------------------------------------------------------------*/
+.list {
+    &--default {
+        display: grid;
+        grid-gap: $spacing-unit--large;
+        @include mq($from: tablet) {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+    &--portfolio {
+        display: block;
+        @include mq($from: tablet) {
+            > li {
+                display: flex;
+                flex-flow: row wrap;
+                &:not(:last-child) {
+                    margin-bottom: $spacing-unit;
+                }
+            }
+        }
+    }
+}

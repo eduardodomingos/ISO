@@ -1,0 +1,107 @@
+/*--------------------------------------------------------------
+# Post
+--------------------------------------------------------------*/
+.post {
+    @extend %section;
+    padding-top: 0!important;
+    .post__header {
+        margin-bottom: $spacing-unit;
+        .post-thumbnail {
+            margin-bottom: $spacing-unit + $spacing-unit--small;
+        }
+        h1 {
+            font-size: 35px;
+            @include mq($from: tablet) {
+                font-size: 42px;
+            }
+        }
+
+        .meta {
+            font-size: 15px;
+            font-weight: $font--light;
+            margin-top: $spacing-unit--small;
+            .cat {
+                font-weight: $font--normal;
+                @extend %links;
+            }
+        }
+    }
+    .post__content {
+        margin-bottom: $spacing-unit;
+        >*:not(:last-child) {
+            margin-bottom: $spacing-unit;
+        }
+        h1 {
+            font-size: 35px;
+        }
+        h2 {
+            font-size: 28px;
+        }
+        h3 {
+            font-size: 24px;
+        }
+        h4 {
+            font-size: 20px;
+        }
+        h5 {
+            font-size: 18px;
+        }
+        h6 {
+            font-size: 16px;
+        }
+        a {
+            @extend %links;
+        }
+        figure {
+            figcaption {
+                text-align: center;
+                padding: $spacing-unit--small $spacing-unit--tiny;
+                font-size: 15px;
+                font-weight: $font--light;
+                border-bottom: 1px solid lighten($grey, 52%);
+            }
+        }
+    }
+    .post__footer {
+        font-size: 15px;
+        .tags {
+            font-weight: $font--light;
+            a {
+                @extend %links; 
+            }
+        }
+
+        .share {
+            margin-top: $spacing-unit;
+            display: flex;
+            align-items: center;
+            .label {
+                font-weight: $font--light;
+                margin-right: $spacing-unit--small;
+                display: inline-block;
+            }
+        }
+    }
+
+    &--portfolio {
+        .post-thumbnail {
+            background-color: lighten($black, 9%);
+            display: flex;
+            justify-content: center;
+            @include mq($from: tablet) {
+                padding: $spacing-unit 0;
+            }
+            &--portrait {
+                img {
+                    max-height: 600px;
+                }
+            }
+            &--landscape {
+                img {
+                    width: 100%;
+                    max-width: 850px;
+                }
+            }
+        }
+    }
+}

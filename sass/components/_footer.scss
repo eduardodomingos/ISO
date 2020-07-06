@@ -1,0 +1,17 @@
+/*--------------------------------------------------------------
+# Footer
+--------------------------------------------------------------*/
+.site-footer {
+    background-color: lighten($black, 20%);
+    color: $white;
+    .site-footer__top {
+        padding: $spacing-unit--large 0;
+        background-color: lighten($black, 30%);
+    }
+    small {
+        opacity: .7;
+        display: block;
+        padding: $spacing-unit--small 0;
+        text-align: center;
+    }
+}

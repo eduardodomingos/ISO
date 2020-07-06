@@ -1,0 +1,62 @@
+/*--------------------------------------------------------------
+# Socials
+--------------------------------------------------------------*/
+.socials {
+    display: flex;
+    color: $white;
+    > li:not(:last-child) {
+        margin-right: $spacing-unit--small;
+    }
+    a {
+        @include circle(35px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 14px;
+
+        &[href*='facebook'] {
+            background-color: $facebook;
+        }
+        &[href*='twitter'] {
+            background-color: $twitter;
+        }
+        &[href*='instagram'] {
+            background-color: $instagram;
+        }
+        &[href*='youtube'] {
+            background-color: $youtube;
+        }
+        &[href*='500px'] {
+            background-color: $fivehundredpx;
+        }
+
+        @include attention() {
+            opacity: .85;
+        }
+    }
+
+    .site-footer & {
+        justify-content: center;
+        a {
+            background-color: lighten($black, 50%);
+            @include attention() {
+                opacity: 1;
+                &[href*='facebook'] {
+                    background-color: $facebook;
+                }
+                &[href*='twitter'] {
+                    background-color: $twitter;
+                }
+                &[href*='instagram'] {
+                    background-color: $instagram;
+                }
+                &[href*='youtube'] {
+                    background-color: $youtube;
+                }
+                &[href*='500px'] {
+                    background-color: $fivehundredpx;
+                }
+            }
+        }
+    }
+}
