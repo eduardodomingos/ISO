@@ -33,6 +33,24 @@ function css() {
   .pipe(gulp.dest('./'))
 }
 
+// JS task
+function js() {
+  return gulp
+  .src(
+    [
+      './js/app.js'
+    ]
+  )
+  .pipe(sourcemaps.init())
+  .pipe(jshint())
+  .pipe(jshint.reporter('default'))
+  .pipe(concat('app.js'))
+  .pipe(rename({suffix: '.min'}))
+  .pipe(uglify())
+  .pipe(sourcemaps.write('./maps'))
+  .pipe(gulp.dest('./js'));
+}
+
 // Images task
 function images() {
   return gulp
@@ -46,6 +64,7 @@ function images() {
 function watchFiles() {
   gulp.watch("./sass/**/*.scss", css);
   gulp.watch('images/src/*', images);
+  gulp.watch(['./js/*.js', '!./js/app.min.js'], js);
 }
 
-exports.default = gulp.series(gulp.parallel(css, images, watchFiles));
+exports.default = gulp.series(gulp.parallel(css, js, images, watchFiles));

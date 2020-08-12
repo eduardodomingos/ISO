@@ -177,6 +177,7 @@ add_action( 'widgets_init', 'iso_widgets_init' );
 function iso_scripts() {
 	wp_enqueue_style( 'iso-fonts', '//fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap' );
 	wp_enqueue_style( 'iso-style', get_stylesheet_uri(), array(), _S_VERSION );
+	wp_enqueue_script( 'iso-script', get_template_directory_uri() . '/js/app.min.js', array('jquery'), '20200812', true );
 }
 add_action( 'wp_enqueue_scripts', 'iso_scripts' );
 
