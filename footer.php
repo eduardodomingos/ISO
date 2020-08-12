@@ -21,6 +21,10 @@
 						'theme_location' => 'menu-footer',
 						'container'      => false,
 						'menu_class'     => 'socials',
+						'depth'             => 1,
+						'link_before'       => '<span class="screen-reader-text">',
+						'link_after'        => '</span>' . iso_get_svg( array( 'icon' => 'chain' ) ),
+						'container'         => false
 					)
 				);
 				?>

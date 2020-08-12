@@ -33,9 +33,18 @@ function css() {
   .pipe(gulp.dest('./'))
 }
 
+// Images task
+function images() {
+  return gulp
+  .src('./images/src/*')
+  .pipe(plumber({ errorHandler: onError }))
+  .pipe(imagemin({ optimizationLevel: 7, progressive: true }))
+  .pipe(gulp.dest('./images/dist'));
+}
+
 // Watch files
 function watchFiles() {
   gulp.watch("./sass/**/*.scss", css);
 }
 
-exports.default = gulp.series(gulp.parallel(css, watchFiles));
+exports.default = gulp.series(gulp.parallel(css, images, watchFiles));

@@ -35,6 +35,10 @@
         }
     }
 
+    .icon {
+        position: static;
+    }
+
     .site-footer & {
         justify-content: center;
         a {
