@@ -12,10 +12,7 @@
 <article class="post post--blog">
 	<header class="post__header">
 		<div class="wrap wrap--mid">
-			<!--div class="post-thumbnail">
-				<?php // iso_post_thumbnail(); ?>
-				<img src="img/mushrooms.jpg" alt="">
-			</div-->
+			<?php iso_post_thumbnail(); ?>
 		</div>
 		<div class="wrap wrap--content">
 			<?php the_title( '<h1>', '</h1>' ); ?>

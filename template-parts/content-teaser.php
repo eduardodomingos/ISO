@@ -35,7 +35,7 @@
     <?php default: ?>
         <article class="teaser">
             <a href="<?php the_permalink(); ?>">
-                <!-- thumb aqui! -->
+                <?php the_post_thumbnail('medium_large'); ?>
             </a>
             <?php echo iso_get_post_categories(); ?>
             <?php the_title( sprintf( '<h2><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); ?>
