@@ -24,7 +24,7 @@ get_header();
 		<section class="section">
 			<div class="wrap">
 				<header class="section__header">
-					<?php the_archive_title( '<h1>', '</h1>' ); ?>
+					<?php the_archive_title( '<h1 class="big">', '</h1>' ); ?>
 					<?php the_archive_description();?>
 				</header>
 				<div class="section__content">

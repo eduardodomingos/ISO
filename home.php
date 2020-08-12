@@ -21,7 +21,7 @@ get_header();
 			<section class="section">
 				<div class="wrap">
 					<header class="section__header">
-						<h1 class="big">Blog</h1>
+						<h1 class="big"><?php echo get_the_title( get_option('page_for_posts', true) );?></h1>
 						<p>Some writing about Landscape Photography.</p>
 					</header>
 					<div class="section__content">
