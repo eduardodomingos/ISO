@@ -47,7 +47,7 @@ if ( $related->have_posts() ): ?>
 				<p><a href="<?php echo get_permalink( get_option( 'page_for_posts' ) ); ?>">view all blog posts</a></p>
 			</header>
 			<div class="section__content">
-				<ul class="list list--default">
+				<ul class="list list--default list-related <?php echo $related->found_posts > 1 ? 'list-related--' . $related->found_posts . '-items wrap--content' : 'list-related--1-item wrap--content' ?>" >
 					<?php
 					/* Start the Loop */
 					while ( $related->have_posts() ) :

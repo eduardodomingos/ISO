@@ -8,7 +8,27 @@
         @include mq($from: tablet) {
             grid-template-columns: repeat(3, 1fr);
         }
+
+        &.list-related {
+            &--1-item,
+            &--2-items {
+                margin: 0 auto;
+            }
+
+            &--1-item {
+                @include mq($from: tablet) {
+                    grid-template-columns: none;
+                }
+            }
+
+            &--2-items {
+                @include mq($from: tablet) {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+            }
+        }
     }
+
     &--portfolio {
         display: block;
         @include mq($from: tablet) {
