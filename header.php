@@ -26,8 +26,8 @@
 	<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'iso' ); ?></a>
 
 	<header 
-	class="site-header <?php if (has_post_thumbnail( $post->ID ) ): ?>site-header--bg-img<?php endif;?>"
-	<?php if (has_post_thumbnail( $post->ID ) ): ?>
+	class="site-header<?php echo is_active_sidebar('header-top-1') ? ' site-header--has-cta' : '';?><?php if (is_page() && has_post_thumbnail( $post->ID ) ): ?> site-header--bg-img<?php endif;?>"
+	<?php if ( is_page() && has_post_thumbnail( $post->ID ) ): ?>
 		style="background-image: url('<?php echo wp_get_attachment_url( get_post_thumbnail_id( $post->ID ) ); ?>');"
 	<?php endif;?>
 	>
