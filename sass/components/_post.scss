@@ -20,9 +20,14 @@
             font-size: 15px;
             font-weight: $font--light;
             margin-top: $spacing-unit--small;
-            .cat {
+            .cat-links a {
                 font-weight: $font--normal;
                 @extend %links;
+            }
+            .posted-on {
+                .updated:not(.published) {
+                    display: none;
+                }
             }
         }
     }
