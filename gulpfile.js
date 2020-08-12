@@ -45,6 +45,7 @@ function images() {
 // Watch files
 function watchFiles() {
   gulp.watch("./sass/**/*.scss", css);
+  gulp.watch('images/src/*', images);
 }
 
 exports.default = gulp.series(gulp.parallel(css, images, watchFiles));
