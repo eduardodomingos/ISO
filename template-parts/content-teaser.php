@@ -15,12 +15,21 @@
 ?>
 <?php switch ($template_type):
     case 'portfolio': ?>
-        <article class="teaser teaser--portfolio teaser--portfolio--3x2">
-            <a href="<?php the_permalink(); ?>">
-                <!-- thumb aqui! -->
-                <h2><?php the_title(); ?></h2>
-            </a>
-        </article>
+        <?php 
+            $image = get_field('teaser_image');
+            if( $image ) {
+                $image_meta = wp_get_attachment_metadata($image);
+                $aspect_ratio = iso_aspect_ratio($image_meta['width'] / $image_meta['height']);
+                if($aspect_ratio === '1 1/2' || $aspect_ratio === '2/3' ) : ?>
+                    <article class="teaser teaser--portfolio teaser--portfolio--<?php echo $aspect_ratio === '2/3' ? '2x3': '3x2'; ?>">
+                    <a href="<?php the_permalink(); ?>">
+                         <?php echo preg_replace('/(height|width)="\d*"\s/', "", wp_get_attachment_image( $image, 'medium_large' )); ?>
+                        <h2><?php the_title(); ?></h2>
+                    </a>
+                    </article>
+                <?php endif;
+            }        
+        ?>
     <?php break;?>
     <?php 
     case 'location': ?>

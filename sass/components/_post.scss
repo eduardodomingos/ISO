@@ -96,6 +96,10 @@
             @include mq($from: tablet) {
                 padding: $spacing-unit 0;
             }
+            img {
+                width: auto;
+                height: auto;
+            }
             &--portrait {
                 img {
                     max-height: 600px;

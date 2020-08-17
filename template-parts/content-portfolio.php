@@ -11,10 +11,12 @@
 
 <article class="post post--portfolio">
 	<header class="post__header">
-		<!--div class="post-thumbnail post-thumbnail--landscape">
-			<?php // iso_post_thumbnail(); ?>
-			<img src="img/coimbra.jpg" alt="">
-		</div-->
+		<?php
+		$img_meta = wp_get_attachment_metadata( get_post_thumbnail_id());
+		$orientation_class = 'post-thumbnail--' . ($img_meta['width'] > $img_meta['height'] ? 'landscape' : 'portrait');
+		?>
+		<?php iso_post_thumbnail($orientation_class); ?>
+		
 		<div class="wrap wrap--content">
 			<?php the_title( '<h1>', '</h1>' ); ?>
 		</div>

@@ -22,13 +22,18 @@ get_header();
 					<div class="section__content">
 						<ul class="list list--portfolio">
 							<?php
+							$i=1;
 							/* Start the Loop */
+							echo '<li>';
 							while ( have_posts() ) :
 								the_post();
-								echo '<li>';
 								iso_get_template_part('template-parts/content', 'teaser', array('template_type' => 'portfolio'));
-								echo '</li>';
+								if ($i % 3 == 0){
+									echo '</li><li>';
+								}
+								$i++;
 							endwhile;
+							echo '</li>';
 							// the_posts_navigation();
 							?>
 						</ul>

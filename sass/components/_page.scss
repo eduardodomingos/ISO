@@ -22,3 +22,42 @@ body {
 .site-footer {
     flex-shrink: 0;
 }
+
+.page {
+    .page__content {
+        margin-bottom: $spacing-unit;
+        >*:not(:last-child) {
+            margin-bottom: $spacing-unit;
+        }
+        h1 {
+            font-size: 35px;
+        }
+        h2 {
+            font-size: 28px;
+        }
+        h3 {
+            font-size: 24px;
+        }
+        h4 {
+            font-size: 20px;
+        }
+        h5 {
+            font-size: 18px;
+        }
+        h6 {
+            font-size: 16px;
+        }
+        a {
+            @extend %links;
+        }
+        figure {
+            figcaption {
+                text-align: center;
+                padding: $spacing-unit--small $spacing-unit--tiny;
+                font-size: 15px;
+                font-weight: $font--light;
+                border-bottom: 1px solid lighten($grey, 52%);
+            }
+        }
+    }
+}

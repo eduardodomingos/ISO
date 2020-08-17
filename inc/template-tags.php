@@ -90,7 +90,7 @@ if ( ! function_exists( 'iso_post_thumbnail' ) ) :
 	 * Wraps the post thumbnail in an anchor element on index views, or a div
 	 * element when on single views.
 	 */
-	function iso_post_thumbnail() {
+	function iso_post_thumbnail($classes = '') {
 		if ( post_password_required() || is_attachment() || ! has_post_thumbnail() ) {
 			return;
 		}
@@ -98,7 +98,7 @@ if ( ! function_exists( 'iso_post_thumbnail' ) ) :
 		if ( is_singular() ) :
 			?>
 
-			<div class="post-thumbnail">
+			<div class="post-thumbnail<?php echo ' ' . $classes;?>">
 				<?php the_post_thumbnail(); ?>
 			</div><!-- .post-thumbnail -->
 

@@ -2,7 +2,8 @@
 # Site Nav
 --------------------------------------------------------------*/
 .site-nav {    
-    li.current-menu-item {
+    li.current-menu-item,
+    li.current_page_parent {
         color: $black;
         font-weight: $font--bold;
         a {
