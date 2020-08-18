@@ -20,18 +20,7 @@ get_header();
 						<?php the_archive_description();?>
 					</header>
 					<div class="section__content">
-						<ul class="list list--default">
-							<?php
-							/* Start the Loop */
-							while ( have_posts() ) :
-								the_post();
-								echo '<li>';
-								iso_get_template_part('template-parts/content', 'teaser');
-								echo '</li>';
-							endwhile;
-							// the_posts_navigation();
-							?>
-						</ul>
+						<?php iso_list('', $wp_query, 'template-parts/content', 'teaser',  array()); ?>
 					</div>		
 				</div>
 			</section>

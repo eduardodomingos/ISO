@@ -20,23 +20,7 @@ get_header();
 						<?php the_archive_description();?>
 					</header>
 					<div class="section__content">
-						<ul class="list list--portfolio">
-							<?php
-							$i=1;
-							/* Start the Loop */
-							echo '<li>';
-							while ( have_posts() ) :
-								the_post();
-								iso_get_template_part('template-parts/content', 'teaser', array('template_type' => 'portfolio'));
-								if ($i % 3 == 0){
-									echo '</li><li>';
-								}
-								$i++;
-							endwhile;
-							echo '</li>';
-							// the_posts_navigation();
-							?>
-						</ul>
+						<?php iso_list('list--portfolio', $wp_query, 'template-parts/content', 'teaser', array('template_type' => 'portfolio')); ?>
 					</div>		
 				</div>
 			</section>

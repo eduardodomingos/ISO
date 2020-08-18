@@ -154,21 +154,11 @@ if ( ! function_exists( 'iso_insert_modules' ) ) :
 								<div class="section__content">
 									<?php 
 									$featured_work = get_sub_field('portfolio');
-									if( $featured_work ): ?>
-										<?php global $post; ?>
-										<ul class="list list--portfolio">
-										<?php foreach( $featured_work as $post ):
-											// Setup this post for WP functions (variable must be named $post).
-											setup_postdata($post); ?>
-											<li>
-												<?php iso_get_template_part('template-parts/content', 'teaser', array('template_type' => 'portfolio')); ?>
-											</li>
-										<?php endforeach; ?>
-										</ul>
-										<?php
+									if( $featured_work ):
+										iso_list('list--portfolio', $featured_work, 'template-parts/content', 'teaser', array('template_type' => 'portfolio'), true );
 										// Reset the global post object so that the rest of the page works correctly.
-										wp_reset_postdata(); ?>
-									<?php endif; ?>
+										wp_reset_postdata();
+									endif; ?>
 								</div>
 							</div>
 						</section>
@@ -182,21 +172,11 @@ if ( ! function_exists( 'iso_insert_modules' ) ) :
 								<div class="section__content">
 									<?php 
 									$featured_work = get_sub_field('posts');
-									if( $featured_work ): ?>
-										<?php global $post; ?>
-										<ul class="list list--default">
-										<?php foreach( $featured_work as $post ):
-											// Setup this post for WP functions (variable must be named $post).
-											setup_postdata($post); ?>
-											<li>
-												<?php iso_get_template_part('template-parts/content', 'teaser'); ?>
-											</li>
-										<?php endforeach; ?>
-										</ul>
-										<?php
+									if( $featured_work ):
+										iso_list('', $featured_work, 'template-parts/content', 'teaser', array(), true );
 										// Reset the global post object so that the rest of the page works correctly.
-										wp_reset_postdata(); ?>
-									<?php endif; ?>
+										wp_reset_postdata();
+									endif; ?>
 								</div>
 							</div>
 						</section>

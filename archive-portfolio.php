@@ -28,18 +28,7 @@ get_header();
 					<?php the_archive_description();?>
 				</header>
 				<div class="section__content">
-					<ul class="list list--default">
-						<?php
-						/* Start the Loop */
-						foreach( $terms as $term ) :
-							the_post();
-							echo '<li>';
-							iso_get_template_part('template-parts/content', 'teaser', array('template_type' => 'location', 'term' => $term));
-							echo '</li>';
-						endforeach;
-						// the_posts_navigation();
-						?>
-					</ul>
+					<?php iso_list('', $terms, 'template-parts/content', 'teaser',  array(), false, true); ?>
 				</div>
 			</div>
 		</section>

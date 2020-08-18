@@ -50,17 +50,7 @@ get_header();
 						<p><a href="<?php echo get_post_type_archive_link('portfolio'); ?>">view all work</a></p>
 					</header>
 					<div class="section__content">
-						<ul class="list list--portfolio">
-							<?php
-							/* Start the Loop */
-							while ( $latest->have_posts() ) :
-								$latest->the_post();
-								echo '<li>';	
-								iso_get_template_part('template-parts/content', 'teaser', array('template_type' => 'portfolio'));
-								echo '</li>';
-							endwhile;
-							?>
-						</ul>
+						<?php iso_list('list--portfolio', $latest, 'template-parts/content', 'teaser',  array('template_type' => 'portfolio')); ?>
 					</div>
 				</div>
 			</section>

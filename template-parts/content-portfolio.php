@@ -58,17 +58,7 @@ if ( $related->have_posts() ): ?>
 				<p><a href="<?php echo get_post_type_archive_link('portfolio'); ?>">view all work</a></p>
 			</header>
 			<div class="section__content">
-				<ul class="list list--portfolio">
-					<?php
-					/* Start the Loop */
-					while ( $related->have_posts() ) :
-						$related->the_post();
-						echo '<li>';				
-						iso_get_template_part('template-parts/content', 'teaser', array('template_type' => 'portfolio'));
-						echo '</li>';
-					endwhile;
-					?>
-				</ul>
+				<?php iso_list('list--portfolio', $related, 'template-parts/content', 'teaser', array('template_type' => 'portfolio')); ?>
 			</div>
 		</div>
 	</section>

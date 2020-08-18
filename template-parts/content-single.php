@@ -47,17 +47,7 @@ if ( $related->have_posts() ): ?>
 				<p><a href="<?php echo get_permalink( get_option( 'page_for_posts' ) ); ?>">view all blog posts</a></p>
 			</header>
 			<div class="section__content">
-				<ul class="list list--default list-related <?php echo $related->found_posts > 1 ? 'list-related--' . $related->found_posts . '-items wrap--content' : 'list-related--1-item wrap--content' ?>" >
-					<?php
-					/* Start the Loop */
-					while ( $related->have_posts() ) :
-						$related->the_post();
-						echo '<li>';				
-						iso_get_template_part('template-parts/content', 'teaser');
-						echo '</li>';
-					endwhile;
-					?>
-				</ul>
+				<?php iso_list('', $related, 'template-parts/content', 'teaser'); ?>
 			</div>
 		</div>
 	</section>

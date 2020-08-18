@@ -203,3 +203,39 @@ function iso_aspect_ratio($float) {
     }
     return ($whole == 0 ? '' : $whole . " ") . ($roundedDecimal * $denom) . "/" . $denom;
 }
+
+
+function iso_list($classes = '', $contents, $template_slug, $template_name, $template_data = array(), $acf = false, $terms = false ) {
+    if($classes == '') {
+        $classes = 'list--default';
+    }
+    if($acf) :
+        global $post;
+        echo '<ul class="list ' . $classes . ' item-count-'. count($contents) . '">';
+        foreach( $contents as $post ):
+            // Setup this post for WP functions (variable must be named $post).
+            setup_postdata($post);
+            echo '<li>';
+            iso_get_template_part($template_slug, $template_name, $template_data);
+            echo '</li>';
+        endforeach;
+    elseif($terms) :
+        echo '<ul class="list ' . $classes . ' item-count-'. count($contents) . '">';
+        foreach( $contents as $term ) :
+            the_post();
+            echo '<li>';
+            iso_get_template_part($template_slug, $template_name, array('template_type' => 'location', 'term' => $term));
+            echo '</li>';
+        endforeach;
+    else:
+        echo '<ul class="list ' . $classes . ' item-count-'. $contents->found_posts . '">';
+        /* Start the Loop */
+        while ( $contents->have_posts() ) :
+            $contents->the_post();
+            echo '<li>';				
+            iso_get_template_part($template_slug, $template_name, $template_data);
+            echo '</li>';
+        endwhile;
+    endif;
+    echo '</ul>';
+}

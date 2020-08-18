@@ -27,20 +27,6 @@
         font-size: 95%;
     }
 
-    .list-related--1-item & {
-        @include mq($from: tablet) {
-            display: flex;
-            .teaser__media {
-                flex: 1 0 0;
-                margin-bottom: 0;
-                padding-right: $spacing-unit;
-            }
-            .teaser__text {
-                flex: 2 0 0;
-            }
-        }
-    }
-
     &--portfolio {
         position: relative;
         background-color: lighten($black, 10%);
